@@ -561,13 +561,20 @@ def get_tokenizer(
     """
     raise NotImplementedError
 
-
+from cs336_basics.bpe import *
 def run_train_bpe(
     input_path: str | os.PathLike,
     vocab_size: int,
     special_tokens: list[str],
     **kwargs,
 ) -> tuple[dict[int, bytes], list[tuple[bytes, bytes]]]:
+    vocab,merges=train_bpe(
+        input_path=input_path,
+        vocab_size=vocab_size,
+        special_tokens=special_tokens,
+    )
+    return vocab, merges
+    
     """Given the path to an input corpus, run train a BPE tokenizer and
     output its vocabulary and merges.
 
